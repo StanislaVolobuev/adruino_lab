@@ -1,0 +1,42 @@
+#include <Servo.h> 
+Servo servo;
+int button = 2;
+int red = 11;
+int blue = 12;
+int green = 13;
+int flag = 0;
+
+void setup() {
+ servo.attach(10); 
+ pinMode(green, OUTPUT);
+ pinMode(blue, OUTPUT);
+ pinMode(red, OUTPUT);
+ pinMode(button, INPUT);
+}
+void loop() {
+ digitalWrite(green, HIGH);
+ if (flag == 0) {
+   if (digitalRead(button) == HIGH) {
+     flag = 1;
+     digitalWrite(green, LOW);
+     digitalWrite(red, HIGH);
+     delay(1000); 
+     servo.write(90);
+     delay(1000); 
+     digitalWrite(red, LOW);
+     digitalWrite(green, HIGH);
+   }
+  }
+ if (flag == 1) {
+  if (digitalRead(button) == HIGH) {
+    digitalWrite(green, LOW);
+    digitalWrite(blue, HIGH);
+    delay(1000); 
+    servo.write(-90);
+    delay(1000); 
+    digitalWrite(blue, LOW);
+    digitalWrite(green, HIGH);
+    flag = 0;
+  }
+ }
+}
