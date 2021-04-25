@@ -1,0 +1,21 @@
+int sens = 2;
+int red = 10;
+int green = 11;
+
+void setup() {
+ pinMode(green, OUTPUT);
+ pinMode(red, OUTPUT);
+ pinMode(sens, INPUT);
+}
+
+void loop() {
+digitalWrite(green, HIGH);
+digitalWrite(red, LOW);
+  if (digitalRead(sens) == HIGH) {
+    digitalWrite(red, HIGH);
+    delay(1000);
+    digitalWrite(green, LOW);
+    
+    delay(10000);
+  }
+}
